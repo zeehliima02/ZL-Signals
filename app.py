@@ -132,10 +132,11 @@ def apply_persistent_id_with_sheet(text: str):
 
     elif kind == "tp1":
         open_id = state.get("open_trade_global_id")
-        if open_id in (none, "", "null"):
+        if open_id in (None, "", "null"):
             official_id = int(state.get("last_global_id", 0) or 0)
         else:
             official_id = int(open_id)
+        text = replace_id_in_text(text, official_id)    
             
     elif kind in ("tp2", "sl"):
         open_id = state.get("open_trade_global_id")
