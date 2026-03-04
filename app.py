@@ -83,9 +83,7 @@ def sheet_save_state(symbol: str, state: dict):
 def classify_message(text: str) -> str:
     if "✅ Entrada confirmada" in text:
         return "entry"
-    if "TP2 ATINGIDO" in text:
-        return "tp2"
-    if "TP1 ATINGIDO" in text:
+    if "TP ATINGIDO" in text:
         return "tp1"
     if "STOP LOSS ATINGIDO" in text:
         return "sl"
@@ -138,7 +136,7 @@ def apply_persistent_id_with_sheet(text: str):
         official_id = int(open_id)
         text = replace_id_in_text(text, official_id)    
             
-    elif kind in ("tp2", "sl"):
+    elif kind in ("tp1", "sl"):
         open_id = state.get("open_trade_global_id")
         if state.get("open_trade_status") != "open" or open_id in (None, "", "null"):
             return text, {"duplicate": true, "kind": "ghost_ignored", "official_id": None, "symbol": symbol}
