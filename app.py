@@ -68,6 +68,7 @@ def sheet_save_state(symbol: str, state: dict):
         "last_global_id": state.get("last_global_id", 0),
         "open_trade_global_id": state.get("open_trade_global_id"),
         "open_trade_status": state.get("open_trade_status", "closed"),
+        "points": state.get("points",0)
         "last_hash": state.get("last_hash", ""),
         "last_hash_ts": state.get("last_hash_ts", 0),
     }
@@ -143,6 +144,10 @@ def apply_persistent_id_with_sheet(text: str):
         
         official_id = int(open_id)
         text = replace_id_in_text(text, official_id)
+
+        resultado_pontos = 500 if kind == "tp1" else -1200
+        state["points"] = resultado_pontos
+        
         state["open_trade_global_id"] = None
         state["open_trade_status"] = "closed"
 
