@@ -127,6 +127,7 @@ def apply_persistent_id_with_sheet(text: str):
         state["last_global_id"] = official_id
         state["open_trade_global_id"] = official_id
         state["open_trade_status"] = "open"
+        state["points"] = 0
         text = replace_id_in_text(text, official_id)
         
     elif kind in ("tp1", "sl"):
